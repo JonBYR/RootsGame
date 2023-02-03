@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 1466448939, guid: f73484006d069e94e9b2a7ad2d4be5a9, type: 3}
+  - {fileID: 3491807802709290413, guid: 5f9023afcb2734a47b5d54d24c681135, type: 3}
   minHeight: 0.5
   minMoisture: 0
   minHeat: 0.5

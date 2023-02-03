@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 505613681, guid: f73484006d069e94e9b2a7ad2d4be5a9, type: 3}
-  - {fileID: 271410757, guid: f73484006d069e94e9b2a7ad2d4be5a9, type: 3}
+  - {fileID: 3960273019769523967, guid: 2abee84a7b3d54148944550cdbd0a767, type: 3}
   minHeight: 0.4
-  minMoisture: 0.8
+  minMoisture: 0.6
   minHeat: 0.2

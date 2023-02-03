@@ -5,11 +5,11 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "Biome Preset", menuName = "New Biome Preset")]
 public class BiomePreset : ScriptableObject
 {
-    public Sprite[] tiles;
+    public GameObject[] tiles;
     public float minHeight;
     public float minMoisture;
     public float minHeat;
-    public Sprite GetTileSprite()
+    public GameObject GetTileSprite()
     {
         return tiles[Random.Range(0, tiles.Length)];
     }
