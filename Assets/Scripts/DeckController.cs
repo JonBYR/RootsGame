@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeckController : MonoBehaviour
 {
+    [HideInInspector]
     public List<GameObject> CardList;
     // Start is called before the first frame update
     void Start()
