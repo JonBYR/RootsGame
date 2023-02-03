@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c6dad93a9091f47ad6504972d8d58b, type: 3}
   m_Name: Cavern
   m_EditorClassIdentifier: 
-  tiles: []
+  tiles:
+  - {fileID: 2065663339, guid: f73484006d069e94e9b2a7ad2d4be5a9, type: 3}
+  - {fileID: -133782637, guid: f73484006d069e94e9b2a7ad2d4be5a9, type: 3}
   minHeight: 0.8
   minMoisture: 0.2
   minHeat: 0.1

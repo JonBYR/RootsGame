@@ -12,16 +12,29 @@ public class Map : MonoBehaviour
     public float scale = 1.0f;
     public Vector2 offset;
     [Header("Height Map")]
-    public Wave[] heightWaves;
+    private List<Wave> heightWaves;
     public float[,] heightMap;
     [Header("Moisture Map")]
-    public Wave[] moistureWaves;
+    private List<Wave> moistureWaves;
     private float[,] moistureMap;
     [Header("Heat Map")]
-    public Wave[] heatWaves;
+    private List<Wave> heatWaves;
     public float[,] heatMap;
     void Start()
     {
+        heightWaves = new List<Wave>();
+        moistureWaves = new List<Wave>();
+        heatWaves = new List<Wave>();
+        Wave height1 = new Wave(Random.Range(0f, 100f), 0.05f, 1);
+        Wave height2 = new Wave(Random.Range(0f, 100f), 0.1f, 0.5f);
+        heightWaves.Add(height1);
+        heightWaves.Add(height2);
+        Wave moist = new Wave(Random.Range(0f, 100f), 0.03f, 1);
+        moistureWaves.Add(moist);
+        Wave heat1 = new Wave(Random.Range(0f, 100f), 0.04f, 1);
+        Wave heat2 = new Wave(Random.Range(0f, 100f), 0.02f, 0.5f);
+        heatWaves.Add(heat1);
+        heatWaves.Add(heat2);
         GenerateMap();
     }
     void GenerateMap()

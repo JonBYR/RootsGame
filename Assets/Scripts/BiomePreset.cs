@@ -9,14 +9,6 @@ public class BiomePreset : ScriptableObject
     public float minHeight;
     public float minMoisture;
     public float minHeat;
-    public void tileAdd()
-    {
-        Sprite[] allSprites = Resources.LoadAll<Sprite>("SpriteSheet Test");
-        for (int i = 0; i < allSprites.Length; i++)
-        {
-            if ((i == 1) || (i == 7) || (i == 19) || (i == 22)) tiles[i] = allSprites[i];
-        }
-    }
     public Sprite GetTileSprite()
     {
         return tiles[Random.Range(0, tiles.Length)];
