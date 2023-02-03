@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
-    public MeshCollider outerPLane;
+    //   public MeshCollider outerPLane;
+
+    [HideInInspector]
+    public GameObject UsedCard;
     void Update()
     {
         if (Holding)
@@ -14,13 +18,16 @@ public class TIleInteraction : MonoBehaviour
             Placing();
         }
     }
-
-    private bool Holding;
+    [HideInInspector]
+    public bool Holding;
     GameObject rootToPlace;
     public void PickRoot(int RootID)
     {
-        rootToPlace = Instantiate(roots[RootID]);
-        Holding = true;
+        if (!Holding)
+        {
+            rootToPlace = Instantiate(roots[RootID]);
+            Holding = true;
+        }
     }
 
     private void Placing()
@@ -29,7 +36,21 @@ public class TIleInteraction : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(ray, out hitData) && hitData.transform.tag == "tile")
         {
-            if (rootToPlace) { rootToPlace.transform.position = hitData.transform.position; }
+            if (rootToPlace) {
+                var rootTransform = rootToPlace.transform.position;
+                var hitTransform = hitData.transform.position;
+                rootToPlace.transform.position = Vector3.MoveTowards(rootTransform, hitTransform, 10f * Time.deltaTime);
+                if (Input.GetKeyDown(KeyCode.Mouse0) && hitData.transform.GetComponent<tileState>().Occupied == false &&
+                    rootToPlace.GetComponent<rootScript>().TouchesRoot)
+                {
+                    rootToPlace.transform.position = hitData.transform.position;
+                    hitData.transform.GetComponent<tileState>().Occupied = true;
+                    DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
+                    deck.CardList.Remove(UsedCard);
+                    UsedCard.SetActive(false);                   
+                    Holding= false;
+                }
+            }
         }
         else
         {
@@ -40,6 +61,17 @@ public class TIleInteraction : MonoBehaviour
                 Vector3 NewPos = Camera.main.ScreenToWorldPoint(ScreenPos);
                 rootToPlace.transform.position = NewPos;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            rootToPlace.transform.Rotate(0, 90, 0); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Destroy(rootToPlace);
+            Holding = false;
         }
     }
 }
