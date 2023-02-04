@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +9,24 @@ using UnityEngine.UI;
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
+    private TMP_Text countdown;
+    private float loseTime = 5f;
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
     public GameObject UsedCard;
+    private void Start()
+    {
+        countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
+        countdown.enabled = false;
+    }
     void Update()
     {
         if (Holding)
         {
+            countdown.enabled = true;
+            loseTime -= Time.deltaTime;
+            countdown.text = ("Place! " + loseTime);
             Placing();
         }
     }
@@ -49,6 +61,8 @@ public class TIleInteraction : MonoBehaviour
                     deck.CardList.Remove(UsedCard);
                     UsedCard.SetActive(false);                   
                     Holding= false;
+                    countdown.enabled = false;
+                    loseTime = 5f;
                 }
             }
         }
@@ -72,6 +86,19 @@ public class TIleInteraction : MonoBehaviour
         {
             Destroy(rootToPlace);
             Holding = false;
+            countdown.enabled = false;
+            loseTime = 5f;
+        }
+        
+    }
+    /*
+    IEnumerator CountSeconds()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            loseTime -= 1f;
         }
     }
+    */
 }
