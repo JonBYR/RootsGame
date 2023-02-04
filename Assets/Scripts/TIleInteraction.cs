@@ -11,17 +11,20 @@ public class TIleInteraction : MonoBehaviour
     public GameObject[] roots;
     public Image TreeGrowthChart;
     public Transform Tree;
+    GameObject deckObjects;
     float round = 1;
     private TMP_Text countdown;
     private float loseTime = 5f;
     [HideInInspector]
     public int RootID;
+    bool RefreshDeck;
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
     public GameObject UsedCard;
     private void Start()
     {
+        deckObjects = GameObject.Find("Deck");
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
         countdown.enabled = false;
     }
@@ -73,9 +76,10 @@ public class TIleInteraction : MonoBehaviour
                         TreeGrowthChart.fillAmount+=ToNextGrowth;
                         if(TreeGrowthChart.fillAmount == 1)
                         {
+                            RefreshDeck = true;
                             Tree.localScale = new Vector3(Tree.localScale.x + 1, Tree.localScale.y + 1, Tree.localScale.z + 1);
                             TreeGrowthChart.fillAmount = 0;
-                            round++;
+                            if (round < 4) { round++; }
                             TreeGrowthChart.GetComponentInChildren<TMP_Text>().text = round.ToString();
                         }
                     }
@@ -83,7 +87,8 @@ public class TIleInteraction : MonoBehaviour
                     hitData.transform.GetComponent<tileState>().Occupied = true;
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
                     deck.CardList.Remove(UsedCard);
-                    UsedCard.SetActive(false);                   
+                    UsedCard.SetActive(false);
+                    if (RefreshDeck) { newDeck(); }
                     Holding= false;
                     countdown.enabled = false;
                     loseTime = 5f;
@@ -114,6 +119,19 @@ public class TIleInteraction : MonoBehaviour
             loseTime = 5f;
         }
         
+    }
+
+    public void newDeck()
+    {
+        foreach (Transform Card in deckObjects.transform)
+        {
+            if (Card.gameObject.activeSelf == false)
+            {
+                Card.gameObject.SetActive(true);
+                Card.GetComponent<CardScript>().ChangeCard();
+            }
+        }
+        RefreshDeck = false;
     }
     /*
     IEnumerator CountSeconds()
