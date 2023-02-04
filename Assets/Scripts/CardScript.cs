@@ -25,4 +25,9 @@ public class CardScript : MonoBehaviour
             tileInteraction.UsedCard = gameObject;
         }
     }
+
+    public void ChangeCard()
+    {
+        CardContains = Random.Range(0, 4);
+    }
 }

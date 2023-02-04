@@ -13,12 +13,14 @@ public class TIleInteraction : MonoBehaviour
     private Camera cam;
     public Image TreeGrowthChart;
     public Transform Tree;
+    GameObject deckObjects;
     float round = 1;
     public float speed = 2f;
     private TMP_Text countdown;
     private float loseTime = 0f;
     [HideInInspector]
     public int RootID;
+    bool RefreshDeck;
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
@@ -27,6 +29,7 @@ public class TIleInteraction : MonoBehaviour
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
+        deckObjects = GameObject.Find("Deck");
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
         countdown.enabled = false; //this will be enabled as true when we reach the tree.
     }
@@ -76,9 +79,10 @@ public class TIleInteraction : MonoBehaviour
                         TreeGrowthChart.fillAmount+=ToNextGrowth;
                         if(TreeGrowthChart.fillAmount == 1)
                         {
+                            RefreshDeck = true;
                             Tree.localScale = new Vector3(Tree.localScale.x + 1, Tree.localScale.y + 1, Tree.localScale.z + 1);
                             TreeGrowthChart.fillAmount = 0;
-                            round++;
+                            if (round < 4) { round++; }
                             TreeGrowthChart.GetComponentInChildren<TMP_Text>().text = round.ToString();
                         }
                     }
@@ -86,7 +90,8 @@ public class TIleInteraction : MonoBehaviour
                     hitData.transform.GetComponent<tileState>().Occupied = true;
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
                     deck.CardList.Remove(UsedCard);
-                    UsedCard.SetActive(false);                   
+                    UsedCard.SetActive(false);
+                    if (RefreshDeck) { newDeck(); }
                     Holding= false;
                 }
             }
@@ -115,14 +120,17 @@ public class TIleInteraction : MonoBehaviour
         
     }
     private void scrollBack() //call this once lose condition established
+
+    public void newDeck()
     {
-        cameraMove.enabled = false;
-        cam.fieldOfView = 90f;
-        cam.transform.position = Vector3.MoveTowards(cam.transform.position, Tree.position, speed);
-        if(cam.transform.position == Tree.position)
+        foreach (Transform Card in deckObjects.transform)
         {
-            countdown.enabled = true;
-            countdown.text = ("Congradulations! You have just wasted " + loseTime + " seconds of your life!");
+            if (Card.gameObject.activeSelf == false)
+            {
+                Card.gameObject.SetActive(true);
+                Card.GetComponent<CardScript>().ChangeCard();
+            }
         }
+        RefreshDeck = false;
     }
 }
