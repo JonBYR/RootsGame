@@ -14,4 +14,14 @@ public class GameLoad : MonoBehaviour
         Debug.Log("Quit Application");
         Application.Quit();
     }
+    public void Arcade()
+    {
+        ArcadeWin.collisionOn = true;
+        SceneManager.LoadScene("RootsPlayground");
+    }
+    public void Endless()
+    {
+        ArcadeWin.collisionOn = false;
+        SceneManager.LoadScene("RootsPlayground");
+    } 
 }

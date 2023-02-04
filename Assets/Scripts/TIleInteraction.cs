@@ -26,6 +26,7 @@ public class TIleInteraction : MonoBehaviour
     [HideInInspector]
     public int RootID;
     bool RefreshDeck;
+    bool i;
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
@@ -50,6 +51,19 @@ public class TIleInteraction : MonoBehaviour
         {
             scrollBack();
         }
+        if (i)
+        {
+            cam.transform.position = cameraMove.transform.position;
+            cameraMove.enabled = false;
+            cam.fieldOfView = 90f;
+            cam.transform.position = Vector3.MoveTowards(cam.transform.position, TreeView.position, speed * 0.01f);
+            if (cam.transform.position == TreeView.position)
+            {
+                countdown.enabled = true;
+                countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
+            }
+        }
+
     }
     [HideInInspector]
     public bool Holding;
@@ -149,16 +163,9 @@ public class TIleInteraction : MonoBehaviour
         RefreshDeck = false;
         numberOfCards = 6;
     }
-    private void scrollBack()
+
+    public void scrollBack()
     {
-        cam.transform.position = cameraMove.transform.position;
-        cameraMove.enabled = false;
-        cam.fieldOfView = 90f;
-        cam.transform.position = Vector3.MoveTowards(cam.transform.position, TreeView.position, speed * 0.01f);
-        if (cam.transform.position == TreeView.position)
-        {
-            countdown.enabled = true;
-            countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
-        }
+        i = true;
     }
 }
