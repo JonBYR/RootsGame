@@ -469,6 +469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!114 &89733965
 MonoBehaviour:
@@ -870,6 +875,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!114 &149616701
 MonoBehaviour:
@@ -8917,6 +8927,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!1 &1110664345
 GameObject:
@@ -10589,6 +10604,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!1 &1301626717
 GameObject:
@@ -10770,10 +10790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roots:
-  - {fileID: 7470036387885526868, guid: 56cf53bb15c5f3e4b9b0ba804ce7df5f, type: 3}
-  - {fileID: 5444439173837351182, guid: fcdb6bbf4980b0740bff75d5632da924, type: 3}
   - {fileID: 3782476138524323838, guid: fcae781300d555a4d9d4dfbee27cf12e, type: 3}
+  - {fileID: 7470036387885526868, guid: 56cf53bb15c5f3e4b9b0ba804ce7df5f, type: 3}
   - {fileID: 3618423516813941959, guid: 644fdd475d063b342b4762ec60f579f5, type: 3}
+  - {fileID: 5444439173837351182, guid: fcdb6bbf4980b0740bff75d5632da924, type: 3}
   TreeGrowthChart: {fileID: 271656982}
   Tree: {fileID: 1231933136}
   RootID: 0
@@ -10938,6 +10958,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!1 &1352826479
 GameObject:
@@ -14716,6 +14741,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa94fe17d2ca341806fcbdecaac918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootSprites:
+  - {fileID: 21300000, guid: 1386525b45e2f824d858bfa374d6db22, type: 3}
+  - {fileID: 21300000, guid: 953081b494873b848bca8f8afeb0d4c4, type: 3}
+  - {fileID: 21300000, guid: 359f08370dc827047906de24c81e4fd7, type: 3}
+  - {fileID: 21300000, guid: 25c7baa1935abaf4384006f305ba10d7, type: 3}
   CardContains: 0
 --- !u!1 &2024628380
 GameObject:
