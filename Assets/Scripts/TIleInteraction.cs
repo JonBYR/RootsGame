@@ -13,6 +13,8 @@ public class TIleInteraction : MonoBehaviour
     private Camera cam;
     public Image TreeGrowthChart;
     public Transform Tree;
+    public Transform TreeView;
+    int numberOfCards = 6;
     GameObject deckObjects;
     float round = 1;
     public float speed = 2f;
@@ -31,6 +33,7 @@ public class TIleInteraction : MonoBehaviour
         cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
         deckObjects = GameObject.Find("Deck");
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
+        TreeView = GameObject.Find("TreeView").GetComponent<Transform>();
         countdown.enabled = false; //this will be enabled as true when we reach the tree.
     }
     void Update()
@@ -39,6 +42,10 @@ public class TIleInteraction : MonoBehaviour
         {
             loseTime += Time.deltaTime;
             Placing();
+        }
+        if (numberOfCards == 0)
+        {
+            scrollBack();
         }
     }
     [HideInInspector]
@@ -91,6 +98,7 @@ public class TIleInteraction : MonoBehaviour
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
                     deck.CardList.Remove(UsedCard);
                     UsedCard.SetActive(false);
+                    numberOfCards--;
                     if (RefreshDeck) { newDeck(); }
                     Holding= false;
                 }
@@ -119,8 +127,6 @@ public class TIleInteraction : MonoBehaviour
         }
         
     }
-    private void scrollBack() //call this once lose condition established
-
     public void newDeck()
     {
         foreach (Transform Card in deckObjects.transform)
@@ -132,5 +138,18 @@ public class TIleInteraction : MonoBehaviour
             }
         }
         RefreshDeck = false;
+        numberOfCards = 6;
+    }
+    private void scrollBack()
+    {
+        cam.transform.position = cameraMove.transform.position;
+        cameraMove.enabled = false;
+        cam.fieldOfView = 90f;
+        cam.transform.position = Vector3.MoveTowards(cam.transform.position, TreeView.position, speed * 0.01f);
+        if (cam.transform.position == TreeView.position)
+        {
+            countdown.enabled = true;
+            countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
+        }
     }
 }
