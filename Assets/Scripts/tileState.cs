@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class tileState : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public bool Occupied;
 }

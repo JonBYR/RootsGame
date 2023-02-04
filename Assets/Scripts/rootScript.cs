@@ -11,7 +11,6 @@ public class rootScript : MonoBehaviour
         {
             TouchesRoot = true;
         }
-        else { TouchesRoot= false; }
     }
 
     private void OnCollisionExit(Collision collision)
