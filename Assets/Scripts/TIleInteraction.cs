@@ -68,10 +68,8 @@ public class TIleInteraction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hitData.transform.GetComponent<tileState>().Occupied == false &&
                     rootToPlace.GetComponent<rootScript>().TouchesRoot)
                 {
-                    if(hitData.transform.Find("Water(Clone)"))
+                    if(hitData.transform.Find("Water(Clone)") || hitData.transform.name == "WaterCube(Clone)")
                     {
-                        Debug.Log("Works");
-                        Debug.Log(1 / round);
                         float ToNextGrowth = 1f/round;
                         TreeGrowthChart.fillAmount+=ToNextGrowth;
                         if(TreeGrowthChart.fillAmount == 1)
@@ -81,6 +79,10 @@ public class TIleInteraction : MonoBehaviour
                             TreeGrowthChart.fillAmount = 0;
                             if (round < 4) { round++; }
                             TreeGrowthChart.GetComponentInChildren<TMP_Text>().text = round.ToString();
+                        }
+                        if(hitData.transform.name == "WaterCube(Clone)")
+                        {
+                            hitData.transform.GetComponent<WaterTileManager>().Dry();
                         }
                     }
                     rootToPlace.transform.position = hitTransform;

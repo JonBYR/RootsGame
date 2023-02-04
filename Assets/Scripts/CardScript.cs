@@ -29,5 +29,7 @@ public class CardScript : MonoBehaviour
     public void ChangeCard()
     {
         CardContains = Random.Range(0, 4);
+        buttonSprite.sprite = rootSprites[CardContains];
+        tileInteraction = GameObject.Find("GameController").GetComponent<TIleInteraction>();
     }
 }
