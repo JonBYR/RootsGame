@@ -9,11 +9,11 @@ public class CameraMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        transform.Translate(horizontal * 2*Time.deltaTime, vertical * 2*Time.deltaTime, 0);
+        transform.Translate(horizontal * 5*Time.deltaTime, vertical * 5*Time.deltaTime, 0);
 
         Vector3 clampedPos = transform.position;
-        clampedPos.x = Mathf.Clamp(clampedPos.x, -5, 5);
-        clampedPos.z = Mathf.Clamp(clampedPos.z, -5, 5);
+        clampedPos.x = Mathf.Clamp(clampedPos.x, 5, 24);
+        clampedPos.z = Mathf.Clamp(clampedPos.z, 2.5f, 70);
         transform.position = clampedPos;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dirt
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 6791466023134054804, guid: 0c367347f80c8d64ca5a8593f716a19a, type: 3}
+  - {fileID: 8056500073990290992, guid: f31ab7a1be034fa40ae1a6fda2a0983a, type: 3}
   minHeight: 0
   minMoisture: 0
   minHeat: 0

@@ -51,9 +51,11 @@ public class TIleInteraction : MonoBehaviour
             if (rootToPlace) {
                 var rootTransform = rootToPlace.transform.position;
                 var hitTransform = hitData.transform.position;
+                GameObject InGround = null;
+                if (hitData.transform.childCount == 1) {InGround = hitData.transform.GetChild(0).gameObject; }
                 rootToPlace.transform.position = Vector3.MoveTowards(rootTransform, hitTransform, 10f * Time.deltaTime);
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hitData.transform.GetComponent<tileState>().Occupied == false &&
-                    rootToPlace.GetComponent<rootScript>().TouchesRoot)
+                    rootToPlace.GetComponent<rootScript>().TouchesRoot && !InGround)
                 {
                     rootToPlace.transform.position = hitTransform;
                     hitData.transform.GetComponent<tileState>().Occupied = true;

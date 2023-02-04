@@ -20,6 +20,7 @@ public class Map : MonoBehaviour
     [Header("Heat Map")]
     private List<Wave> heatWaves;
     public float[,] heatMap;
+    private Transform Parent;
     void Start()
     {
         heightWaves = new List<Wave>();
@@ -35,6 +36,7 @@ public class Map : MonoBehaviour
         Wave heat2 = new Wave(Random.Range(0f, 100f), 0.02f, 0.5f);
         heatWaves.Add(heat1);
         heatWaves.Add(heat2);
+        Parent = GameObject.Find("Tiles").transform;
         GenerateMap();
     }
     void GenerateMap()
@@ -47,7 +49,8 @@ public class Map : MonoBehaviour
             for (int y = 0; y < height; ++y)
             {
                 GameObject tile = GetBiome(heightMap[x, y], moistureMap[x, y], heatMap[x, y]).GetTileSprite();
-                Instantiate(tile, new Vector3(x, 0, y), Quaternion.identity);
+                var inst = Instantiate(tile, new Vector3(x, 0, y), Quaternion.identity);
+                inst.transform.parent = Parent;
             }
         }
     }
