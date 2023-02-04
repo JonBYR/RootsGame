@@ -43,7 +43,7 @@ public class TIleInteraction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hitData.transform.GetComponent<tileState>().Occupied == false &&
                     rootToPlace.GetComponent<rootScript>().TouchesRoot)
                 {
-                    rootToPlace.transform.position = hitData.transform.position;
+                    rootToPlace.transform.position = hitTransform;
                     hitData.transform.GetComponent<tileState>().Occupied = true;
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
                     deck.CardList.Remove(UsedCard);
