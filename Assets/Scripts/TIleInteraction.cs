@@ -9,11 +9,14 @@ using UnityEngine.UI;
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
+    private CameraMovement cameraMove;
+    private Camera cam;
     public Image TreeGrowthChart;
     public Transform Tree;
     float round = 1;
+    public float speed = 2f;
     private TMP_Text countdown;
-    private float loseTime = 5f;
+    private float loseTime = 0f;
     [HideInInspector]
     public int RootID;
     //   public MeshCollider outerPLane;
@@ -22,16 +25,16 @@ public class TIleInteraction : MonoBehaviour
     public GameObject UsedCard;
     private void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
-        countdown.enabled = false;
+        countdown.enabled = false; //this will be enabled as true when we reach the tree.
     }
     void Update()
     {
         if (Holding)
         {
-            countdown.enabled = true;
-            loseTime -= Time.deltaTime;
-            countdown.text = ("Place! " + loseTime);
+            loseTime += Time.deltaTime;
             Placing();
         }
     }
@@ -85,8 +88,6 @@ public class TIleInteraction : MonoBehaviour
                     deck.CardList.Remove(UsedCard);
                     UsedCard.SetActive(false);                   
                     Holding= false;
-                    countdown.enabled = false;
-                    loseTime = 5f;
                 }
             }
         }
@@ -110,19 +111,18 @@ public class TIleInteraction : MonoBehaviour
         {
             Destroy(rootToPlace);
             Holding = false;
-            countdown.enabled = false;
-            loseTime = 5f;
         }
         
     }
-    /*
-    IEnumerator CountSeconds()
+    private void scrollBack() //call this once lose condition established
     {
-        while (true)
+        cameraMove.enabled = false;
+        cam.fieldOfView = 90f;
+        cam.transform.position = Vector3.MoveTowards(cam.transform.position, Tree.position, speed);
+        if(cam.transform.position == Tree.position)
         {
-            yield return new WaitForSeconds(1);
-            loseTime -= 1f;
+            countdown.enabled = true;
+            countdown.text = ("Congradulations! You have just wasted " + loseTime + " seconds of your life!");
         }
     }
-    */
 }
