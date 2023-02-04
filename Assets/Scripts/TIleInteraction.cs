@@ -59,7 +59,8 @@ public class TIleInteraction : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            escape();
+            if (resumeButton.gameObject.activeSelf == false) { escape(); }
+            else { Clicked(); }
         }
         if (Holding)
         {
@@ -210,6 +211,12 @@ public class TIleInteraction : MonoBehaviour
     }
     public void mainMenu()
     {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void quitMenu()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
     void escape()
@@ -225,7 +232,7 @@ public class TIleInteraction : MonoBehaviour
     {
         Time.timeScale = 1;
         deckObjects.SetActive(true);
-          resumeButton.gameObject.SetActive(false);
-          endButton.gameObject.SetActive(false);
+        resumeButton.gameObject.SetActive(false);
+        endButton.gameObject.SetActive(false);
     }
 }

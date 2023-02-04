@@ -13,7 +13,6 @@ public class CardScript : MonoBehaviour
     {
         buttonSprite = transform.GetChild(0).GetComponent<Image>();
         CardContains = Random.Range(0, 4);
-        Debug.Log(rootSprites[CardContains]);
         buttonSprite.sprite = rootSprites[CardContains];
         tileInteraction = GameObject.Find("GameController").GetComponent<TIleInteraction>();
     }
