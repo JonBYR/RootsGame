@@ -11,7 +11,7 @@ public class CardScript : MonoBehaviour
     public int CardContains;
     private void Start()
     {
-        buttonSprite = GetComponent<Image>();
+        buttonSprite = transform.GetChild(0).GetComponent<Image>();
         CardContains = Random.Range(0, 4);
         Debug.Log(rootSprites[CardContains]);
         buttonSprite.sprite = rootSprites[CardContains];

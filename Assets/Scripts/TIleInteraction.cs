@@ -14,9 +14,12 @@ public class TIleInteraction : MonoBehaviour
     public Image TreeGrowthChart;
     public Transform Tree;
     public Transform TreeView;
+    public TMP_Text ScoreText;
     int numberOfCards = 6;
     GameObject deckObjects;
     float round = 1;
+    float NextGrowth = 1;
+    int Score = 0;
     public float speed = 2f;
     private TMP_Text countdown;
     private float loseTime = 0f;
@@ -82,15 +85,19 @@ public class TIleInteraction : MonoBehaviour
                     {
                         float ToNextGrowth = 1f/round;
                         TreeGrowthChart.fillAmount+=ToNextGrowth;
+                        NextGrowth--;
                         if(TreeGrowthChart.fillAmount == 1)
                         {
                             RefreshDeck = true;
                             Tree.localScale = new Vector3(Tree.localScale.x + 1, Tree.localScale.y + 1, Tree.localScale.z + 1);
                             TreeGrowthChart.fillAmount = 0;
                             if (round < 4) { round++; }
-                            TreeGrowthChart.GetComponentInChildren<TMP_Text>().text = round.ToString();
+                            Score++;
+                            ScoreText.text = "Score \n"+ Score.ToString();
+                            NextGrowth = round;                         
                         }
-                        if(hitData.transform.name == "WaterCube(Clone)")
+                        TreeGrowthChart.GetComponentInChildren<TMP_Text>().text = NextGrowth.ToString();
+                        if (hitData.transform.name == "WaterCube(Clone)")
                         {
                             hitData.transform.GetComponent<WaterTileManager>().Dry();
                         }
