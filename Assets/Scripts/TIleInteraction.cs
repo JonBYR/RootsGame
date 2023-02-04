@@ -9,12 +9,17 @@ using UnityEngine.UI;
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
+    private CameraMovement cameraMove;
+    private Camera cam;
     public Image TreeGrowthChart;
     public Transform Tree;
+    public Transform TreeView;
+    int numberOfCards = 6;
     GameObject deckObjects;
     float round = 1;
+    public float speed = 2f;
     private TMP_Text countdown;
-    private float loseTime = 5f;
+    private float loseTime = 0f;
     [HideInInspector]
     public int RootID;
     bool RefreshDeck;
@@ -24,18 +29,23 @@ public class TIleInteraction : MonoBehaviour
     public GameObject UsedCard;
     private void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
         deckObjects = GameObject.Find("Deck");
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
-        countdown.enabled = false;
+        TreeView = GameObject.Find("TreeView").GetComponent<Transform>();
+        countdown.enabled = false; //this will be enabled as true when we reach the tree.
     }
     void Update()
     {
         if (Holding)
         {
-            countdown.enabled = true;
-            loseTime -= Time.deltaTime;
-            countdown.text = ("Place! " + loseTime);
+            loseTime += Time.deltaTime;
             Placing();
+        }
+        if (numberOfCards == 0)
+        {
+            scrollBack();
         }
     }
     [HideInInspector]
@@ -90,10 +100,9 @@ public class TIleInteraction : MonoBehaviour
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
                     deck.CardList.Remove(UsedCard);
                     UsedCard.SetActive(false);
+                    numberOfCards--;
                     if (RefreshDeck) { newDeck(); }
                     Holding= false;
-                    countdown.enabled = false;
-                    loseTime = 5f;
                 }
             }
         }
@@ -117,12 +126,9 @@ public class TIleInteraction : MonoBehaviour
         {
             Destroy(rootToPlace);
             Holding = false;
-            countdown.enabled = false;
-            loseTime = 5f;
         }
         
     }
-
     public void newDeck()
     {
         foreach (Transform Card in deckObjects.transform)
@@ -134,15 +140,18 @@ public class TIleInteraction : MonoBehaviour
             }
         }
         RefreshDeck = false;
+        numberOfCards = 6;
     }
-    /*
-    IEnumerator CountSeconds()
+    private void scrollBack()
     {
-        while (true)
+        cam.transform.position = cameraMove.transform.position;
+        cameraMove.enabled = false;
+        cam.fieldOfView = 90f;
+        cam.transform.position = Vector3.MoveTowards(cam.transform.position, TreeView.position, speed * 0.01f);
+        if (cam.transform.position == TreeView.position)
         {
-            yield return new WaitForSeconds(1);
-            loseTime -= 1f;
+            countdown.enabled = true;
+            countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
         }
     }
-    */
 }
