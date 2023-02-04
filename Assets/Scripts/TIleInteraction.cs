@@ -5,10 +5,11 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
+    private bool escapePress = false;
     private CameraMovement cameraMove;
     private Camera cam;
     public Image TreeGrowthChart;
@@ -17,6 +18,9 @@ public class TIleInteraction : MonoBehaviour
     public TMP_Text ScoreText;
     public TMP_Text highScoreText;
     public TMP_Text endlessText;
+    public Button backButton;
+    public Button resumeButton;
+    public Button endButton;
     public static bool arcade = true;
     int numberOfCards = 6;
     GameObject deckObjects;
@@ -31,6 +35,7 @@ public class TIleInteraction : MonoBehaviour
     bool i;
     [HideInInspector]
     public static int Score = 0;
+    
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
@@ -45,9 +50,17 @@ public class TIleInteraction : MonoBehaviour
         countdown.enabled = false; //this will be enabled as true when we reach the tree.
         highScoreText.enabled = false;
         endlessText.enabled = false;
+        backButton.gameObject.SetActive(false);
+        resumeButton.gameObject.SetActive(false);
+        endButton.gameObject.SetActive(false);
+        resumeButton.onClick.AddListener(Clicked);
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            escape();
+        }
         if (Holding)
         {
             loseTime += Time.deltaTime;
@@ -88,6 +101,7 @@ public class TIleInteraction : MonoBehaviour
                 endlessText.enabled = true;
                 endlessText.text = ("High Score " + PlayerPrefs.GetInt("EndlessHighScore", 0));
             }
+            backButton.gameObject.SetActive(true);
         }
 
     }
@@ -193,5 +207,25 @@ public class TIleInteraction : MonoBehaviour
     public void scrollBack()
     {
         i = true;
+    }
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    void escape()
+    {
+        Time.timeScale = 0;
+        deckObjects.SetActive(false);
+        Destroy(rootToPlace);
+        Holding = false;
+        resumeButton.gameObject.SetActive(true);
+        endButton.gameObject.SetActive(true);
+    }
+    void Clicked()
+    {
+        Time.timeScale = 1;
+        deckObjects.SetActive(true);
+          resumeButton.gameObject.SetActive(false);
+          endButton.gameObject.SetActive(false);
     }
 }
