@@ -15,11 +15,13 @@ public class TIleInteraction : MonoBehaviour
     public Transform Tree;
     public Transform TreeView;
     public TMP_Text ScoreText;
+    public TMP_Text highScoreText;
+    public TMP_Text endlessText;
+    public static bool arcade = true;
     int numberOfCards = 6;
     GameObject deckObjects;
     float round = 1;
     float NextGrowth = 1;
-    int Score = 0;
     public float speed = 2f;
     private TMP_Text countdown;
     private float loseTime = 0f;
@@ -27,6 +29,8 @@ public class TIleInteraction : MonoBehaviour
     public int RootID;
     bool RefreshDeck;
     bool i;
+    [HideInInspector]
+    public static int Score = 0;
     //   public MeshCollider outerPLane;
 
     [HideInInspector]
@@ -39,6 +43,8 @@ public class TIleInteraction : MonoBehaviour
         countdown = GameObject.Find("Timer").GetComponent<TMP_Text>();
         TreeView = GameObject.Find("TreeView").GetComponent<Transform>();
         countdown.enabled = false; //this will be enabled as true when we reach the tree.
+        highScoreText.enabled = false;
+        endlessText.enabled = false;
     }
     void Update()
     {
@@ -57,10 +63,30 @@ public class TIleInteraction : MonoBehaviour
             cameraMove.enabled = false;
             cam.fieldOfView = 90f;
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, TreeView.position, speed * 0.01f);
+            
             if (cam.transform.position == TreeView.position)
             {
                 countdown.enabled = true;
                 countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
+                
+            }
+            if (arcade)
+            {
+                if (Score > PlayerPrefs.GetInt("ArcadeHighScore", 0))
+                {
+                    PlayerPrefs.SetInt("ArcadeHighScore", Score);
+                }
+                highScoreText.enabled = true;
+                highScoreText.text = ("High Score " + PlayerPrefs.GetInt("ArcadeHighScore", 0));
+            }
+            else
+            {
+                if (Score > PlayerPrefs.GetInt("EndlessHighScore", 0))
+                {
+                    PlayerPrefs.SetInt("EndlessHighScore", Score);
+                }
+                endlessText.enabled = true;
+                endlessText.text = ("High Score " + PlayerPrefs.GetInt("EndlessHighScore", 0));
             }
         }
 
