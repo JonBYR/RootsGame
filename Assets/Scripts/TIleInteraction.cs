@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
+using UnityEngine.Audio;
+
 public class TIleInteraction : MonoBehaviour
 {
     public GameObject[] roots;
@@ -24,6 +26,7 @@ public class TIleInteraction : MonoBehaviour
     public Button endButton;
     public AudioSource Place;
     public AudioSource TreeGrow;
+    public AudioMixerGroup master;
     public static bool arcade = true;
     int numberOfCards = 6;
     GameObject deckObjects;
@@ -59,6 +62,8 @@ public class TIleInteraction : MonoBehaviour
         resumeButton.gameObject.SetActive(false);
         endButton.gameObject.SetActive(false);
         resumeButton.onClick.AddListener(Clicked);
+        //Place.outputAudioMixerGroup = master;
+        //TreeGrow.outputAudioMixerGroup = master;
     }
     void Update()
     {

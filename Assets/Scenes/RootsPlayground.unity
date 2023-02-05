@@ -943,11 +943,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: a13b47a4178faf445b56467c1a3d8884, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 31710a647240fe343832a62d1a647f69, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f8e8ab69c57c2734dbc098245b92d259, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6662,6 +6662,63 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &697922512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3476655808193513116, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_Name
+      value: Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_RootOrder
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 672.28735
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 664.5923
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -568.88654
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476655808193513118, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3607e59e43883d14ea73c23bfa71523b, type: 3}
 --- !u!1 &718667423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c866b480d21b944dad64fa63a340d38, type: 3}
@@ -7466,7 +7523,7 @@ AudioSource:
   m_GameObject: {fileID: 782668635}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a13b47a4178faf445b56467c1a3d8884, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2a559a8b13738bd4bb935a0290fa426f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -14235,6 +14292,7 @@ MonoBehaviour:
   endButton: {fileID: 1378518937}
   Place: {fileID: 102986064}
   TreeGrow: {fileID: 782668648}
+  master: {fileID: 24300002, guid: 7a5a50a582b888f4f96d8159d44d3c58, type: 2}
   speed: 2
   RootID: 0
   Score: 0
@@ -17926,7 +17984,7 @@ AudioSource:
   m_GameObject: {fileID: 1653475052}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a13b47a4178faf445b56467c1a3d8884, type: 2}
   m_audioClip: {fileID: 8300000, guid: 869b5521e2c82584a868b14e70c763d0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
