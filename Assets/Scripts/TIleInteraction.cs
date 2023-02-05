@@ -42,6 +42,7 @@ public class TIleInteraction : MonoBehaviour
     public GameObject UsedCard;
     private void Start()
     {
+        Time.timeScale = 1;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
         deckObjects = GameObject.Find("Deck");
@@ -57,18 +58,19 @@ public class TIleInteraction : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        loseTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (resumeButton.gameObject.activeSelf == false) { escape(); }
             else { Clicked(); }
         }
         if (Holding)
         {
-            loseTime += Time.deltaTime;
             Placing();
         }
         if (numberOfCards == 0)
         {
+            Time.timeScale = 0;
             scrollBack();
         }
         if (i)
