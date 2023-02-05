@@ -21,6 +21,8 @@ public class TIleInteraction : MonoBehaviour
     public Button backButton;
     public Button resumeButton;
     public Button endButton;
+    public AudioSource Place;
+    public AudioSource TreeGrow;
     public static bool arcade = true;
     int numberOfCards = 6;
     GameObject deckObjects;
@@ -132,7 +134,7 @@ public class TIleInteraction : MonoBehaviour
                 
                 var rootTransform = rootToPlace.transform.position;
                 var hitTransform = hitData.transform.position;
-                rootToPlace.transform.position = Vector3.MoveTowards(rootTransform, hitTransform, 10f * Time.deltaTime);
+                rootToPlace.transform.position = Vector3.MoveTowards(rootTransform, hitTransform, 20f * Time.deltaTime);
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hitData.transform.GetComponent<tileState>().Occupied == false &&
                     rootToPlace.GetComponent<rootScript>().TouchesRoot)
                 {
@@ -145,6 +147,7 @@ public class TIleInteraction : MonoBehaviour
                         {
                             RefreshDeck = true;
                             Tree.localScale = new Vector3(Tree.localScale.x + 1, Tree.localScale.y + 1, Tree.localScale.z + 1);
+                            TreeGrow.Play();
                             TreeGrowthChart.fillAmount = 0;
                             if (round < 4) { round++; }
                             Score++;
@@ -157,6 +160,7 @@ public class TIleInteraction : MonoBehaviour
                             hitData.transform.GetComponent<WaterTileManager>().Dry();
                         }
                     }
+                    Place.Play();
                     rootToPlace.transform.position = hitTransform;
                     hitData.transform.GetComponent<tileState>().Occupied = true;
                     DeckController deck = GameObject.Find("Deck").GetComponent<DeckController>();
