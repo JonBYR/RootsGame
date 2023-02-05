@@ -92,7 +92,7 @@ public class TIleInteraction : MonoBehaviour
             if (cam.transform.position == TreeView.position)
             {
                 countdown.enabled = true;
-                countdown.text = ("Congradulations! You just wasted " + Mathf.Round(loseTime) + " seconds of your life!");
+                countdown.text = ("You ran out of roots!! \n you've played for " + Mathf.Round(loseTime) + " seconds");
                 
             }
             if (arcade)
