@@ -73,8 +73,8 @@ public class TIleInteraction : MonoBehaviour
         }
         if (numberOfCards == 0)
         {
-         //   Time.timeScale = 0;
-         //   scrollBack();
+            Time.timeScale = 0;
+           scrollBack();
         }
         if (i)
         {

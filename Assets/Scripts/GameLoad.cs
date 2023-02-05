@@ -11,7 +11,6 @@ public class GameLoad : MonoBehaviour
     public TMP_Text endlessText;
     private void Start()
     {
-    //    PlayerPrefs.SetInt("ArcadeHighScore", 0);
         highScoreText.text = ("Arcade High Score: " + PlayerPrefs.GetInt("ArcadeHighScore", 0));
         endlessText.text = ("Endless High Score: " + PlayerPrefs.GetInt("EndlessHighScore", 0));
     }
