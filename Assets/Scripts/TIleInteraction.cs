@@ -35,8 +35,8 @@ public class TIleInteraction : MonoBehaviour
     public int RootID;
     bool RefreshDeck;
     bool i;
-    [HideInInspector]
-    public static int Score = 0;
+    //[HideInInspector]
+    public int Score = 0;
     
     //   public MeshCollider outerPLane;
 
@@ -44,6 +44,7 @@ public class TIleInteraction : MonoBehaviour
     public GameObject UsedCard;
     private void Start()
     {
+        Score = 0;
         Time.timeScale = 1;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cameraMove = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); //use this to turn off camera movement when game ends
@@ -72,8 +73,8 @@ public class TIleInteraction : MonoBehaviour
         }
         if (numberOfCards == 0)
         {
-            Time.timeScale = 0;
-            scrollBack();
+         //   Time.timeScale = 0;
+         //   scrollBack();
         }
         if (i)
         {
@@ -153,6 +154,7 @@ public class TIleInteraction : MonoBehaviour
                             TreeGrowthChart.fillAmount = 0;
                             if (round < 4) { round++; }
                             Score++;
+                            Debug.Log(Score);
                             ScoreText.text = "Score \n"+ Score.ToString();
                             NextGrowth = round;                         
                         }
