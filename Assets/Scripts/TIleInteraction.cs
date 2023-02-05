@@ -27,6 +27,7 @@ public class TIleInteraction : MonoBehaviour
     public AudioSource Place;
     public AudioSource TreeGrow;
     public AudioMixerGroup master;
+    public GameObject Particle;
     public static bool arcade = true;
     int numberOfCards = 6;
     GameObject deckObjects;
@@ -170,6 +171,8 @@ public class TIleInteraction : MonoBehaviour
                             hitData.transform.GetComponent<WaterTileManager>().Dry();
                         }
                     }
+                    var inst = Instantiate(Particle, hitData.transform.position, Quaternion.identity);
+                    Destroy(inst, 1);
                     Place.Play();
                     rootToPlace.transform.position = hitTransform;
                     hitData.transform.GetComponent<tileState>().Occupied = true;
